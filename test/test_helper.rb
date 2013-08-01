@@ -5,8 +5,8 @@ require "minitest/rails"
 
 # To add Capybara feature tests add `gem "minitest-rails-capybara"`
 # to the test group in the Gemfile and uncomment the following:
-# require "minitest/rails/capybara"
-
+require "minitest/rails/capybara"
+require "capybara/rails"
 # Uncomment for awesome colorful output
 # require "minitest/pride"
 
@@ -16,3 +16,10 @@ class ActiveSupport::TestCase
 
   # Add more helper methods to be used by all tests here...
 end
+
+class ActionDispatch::IntegrationTest
+  extend Minitest::Spec::DSL
+  include Capybara::DSL
+  include Capybara::Assertions
+end
+
