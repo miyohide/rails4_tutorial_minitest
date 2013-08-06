@@ -10,7 +10,7 @@ describe "StaticPages Integration Test" do
 
     it "should have the title 'Home'" do
       visit '/static_pages/home'
-      page.must_have_content('Ruby on Rails Tutorial Sample App | Home')
+      page.title.must_equal 'Ruby on Rails Tutorial Sample App | Home'
     end
   end
 
@@ -22,7 +22,7 @@ describe "StaticPages Integration Test" do
 
     it "should have the title 'Help'" do
       visit '/static_pages/help'
-      page.must_have_content('Ruby on Rails Tutorial Sample App | Help')
+      page.title.must_equal 'Ruby on Rails Tutorial Sample App | Help'
     end
   end
 
@@ -34,7 +34,7 @@ describe "StaticPages Integration Test" do
 
     it "should have the title 'About Us'" do
       visit '/static_pages/about'
-      page.must_have_content('Ruby on Rails Tutorial Sample App | About Us')
+      page.title.must_equal 'Ruby on Rails Tutorial Sample App | About Us'
     end
   end
 end
