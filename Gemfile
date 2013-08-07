@@ -6,6 +6,7 @@ gem 'rails', '4.0.0'
 group :development, :test do
   gem 'sqlite3'
   gem 'minitest-rails'
+  gem 'guard-minitest'
 end
 
 gem 'sass-rails',   '4.0.0'
