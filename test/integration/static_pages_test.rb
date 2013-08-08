@@ -10,7 +10,7 @@ describe "StaticPages Integration Test" do
 
     it "should have the title 'Home'" do
       visit '/static_pages/home'
-      page.title.must_equal 'Ruby on Rails Tutorial Sample App | Home'
+      page.title.wont_match /\| Home$/
     end
   end
 
