@@ -10,7 +10,7 @@ describe "StaticPages Integration Test" do
 
     it "should have the base title" do
       visit root_path
-      page.must_have_title 'Ruby on Rails Tutorial Sample App'
+      page.must_have_title(full_title(''))
     end
     
     it "should not have a custom page title" do
@@ -27,7 +27,7 @@ describe "StaticPages Integration Test" do
 
     it "should have the title 'Help'" do
       visit help_path
-      page.must_have_title 'Ruby on Rails Tutorial Sample App | Help'
+      page.must_have_title(full_title('Help'))
     end
   end
 
@@ -39,7 +39,7 @@ describe "StaticPages Integration Test" do
 
     it "should have the title 'About Us'" do
       visit about_path
-      page.must_have_title 'Ruby on Rails Tutorial Sample App | About Us'
+      page.must_have_title(full_title('About Us'))
     end
   end
 
@@ -51,7 +51,7 @@ describe "StaticPages Integration Test" do
 
     it "should have the title 'Contact'" do
       visit contact_path
-      page.must_have_title("Ruby on Rails Tutorial Sample App | Contact")
+      page.must_have_title(full_title('Contact'))
     end
   end
 end

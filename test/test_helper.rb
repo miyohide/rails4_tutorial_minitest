@@ -10,6 +10,8 @@ require "capybara/rails"
 # Uncomment for awesome colorful output
 # require "minitest/pride"
 
+require File.expand_path("../support/utilities", __FILE__)
+
 class ActiveSupport::TestCase
   # Setup all fixtures in test/fixtures/*.(yml|csv) for all tests in alphabetical order.
   fixtures :all
