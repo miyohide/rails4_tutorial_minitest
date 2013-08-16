@@ -1,8 +1,13 @@
+# coding: utf-8
 require "test_helper"
 
-# To be handled correctly this spec must end with "Integration Test"
 describe "UserPages Integration Test" do
-  # it "must be a real test" do
-  #   flunk "Need real tests"
-  # end
+  subject { page }
+  describe "signup page" do
+    before { visit signup_path }
+
+    it { must_have_content('Sign up') }
+    it { must_have_title(full_title('Sign up')) }
+  end
 end
+
