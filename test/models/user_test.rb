@@ -3,15 +3,13 @@
 require "test_helper"
 
 describe User do
-  it "pending test" do
-    skip "add some examples to ( or delete) #{__FILE__}"
+  before do
+    @user = User.new(name: "Example User", email: "user@example.com")
   end
 
-  # before do
-  #   @user = User.new
-  # end
+  # subject { @user }
 
-  # it "must be valid" do
-  #   @user.valid?.must_equal true
-  # end
+  it { @user.must_respond_to(:name) }
+  it { @user.must_respond_to(:email) }
+
 end
