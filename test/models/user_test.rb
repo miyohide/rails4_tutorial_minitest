@@ -17,4 +17,9 @@ describe User do
     before { @user.name = "" }
     it { @user.valid?.must_equal false }
   end
+
+  describe "when email is not present" do
+    before { @user.email = "" }
+    it { @user.valid?.must_equal false }
+  end
 end
