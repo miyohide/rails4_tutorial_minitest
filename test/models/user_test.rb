@@ -22,4 +22,9 @@ describe User do
     before { @user.email = "" }
     it { @user.valid?.must_equal false }
   end
+
+  describe "when name is too long" do
+    before { @user.name = "a" * 51 }
+    it { @user.valid?.must_equal false }
+  end
 end
