@@ -49,5 +49,15 @@ describe User do
          end
       end
    end
+
+   describe "when email address is already taken" do
+      before do
+         user_with_same_email = @user.dup
+         user_with_same_email.email = @user.email.upcase
+         user_with_same_email.save
+      end
+
+      it { @user.valid?.must_equal false }
+   end
 end
 
