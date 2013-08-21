@@ -11,6 +11,8 @@ describe User do
 
    it { @user.must_respond_to(:name) }
    it { @user.must_respond_to(:email) }
+   it { @user.must_respond_to(:password_digest) }
+
    it { @user.valid?.must_equal true }
 
    describe "when name is not present" do
