@@ -25,5 +25,6 @@ end
 group :test do
   gem 'minitest-rails-capybara'
   gem 'capybara_minitest_spec'
+  gem 'factory_girl_rails',  '4.2.1'
 end
 
