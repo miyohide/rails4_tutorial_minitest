@@ -21,7 +21,7 @@ describe User do
 
    describe "when name is not present" do
       before { @user.name = "" }
-      it { @user.valid?.must_equal false }
+      it { @user.wont_be :valid? }
    end
 
    describe "when email is not present" do
