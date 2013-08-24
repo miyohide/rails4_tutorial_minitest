@@ -11,6 +11,11 @@ require "capybara/rails"
 # require "minitest/pride"
 
 require File.expand_path("../support/utilities", __FILE__)
+require File.expand_path("../support/my_expectations", __FILE__)
+
+class Object
+   include MyExpectations
+end
 
 class ActiveSupport::TestCase
   # Setup all fixtures in test/fixtures/*.(yml|csv) for all tests in alphabetical order.
