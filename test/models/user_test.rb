@@ -26,12 +26,12 @@ describe User do
 
    describe "when email is not present" do
       before { @user.email = "" }
-      it { @user.valid?.must_equal false }
+      it { @user.wont_be :valid? }
    end
 
    describe "when name is too long" do
       before { @user.name = "a" * 51 }
-      it { @user.valid?.must_equal false }
+      it { @user.wont_be :valid? }
    end
 
    describe "when email format is invalid" do
@@ -40,7 +40,7 @@ describe User do
                        foo@bar_baz.com foo@bar+baz.com)
          addresses.each do |invalid_address|
             @user.email = invalid_address
-            @user.valid?.must_equal false
+            @user.wont_be :valid?
          end
       end
    end
@@ -51,7 +51,7 @@ describe User do
                        a+b@baz.cn)
          addresses.each do |valid_address|
             @user.email = valid_address
-            @user.valid?.must_equal true
+            @user.must_be :valid?
          end
       end
    end
@@ -63,12 +63,12 @@ describe User do
          user_with_same_email.save
       end
 
-      it { @user.valid?.must_equal false }
+      it { @user.wont_be :valid? }
    end
 
    describe "with a password that's too short" do
       before { @user.password = @user.password_confirmation = "a" * 5 }
-      it { @user.valid?.must_equal false }
+      it { @user.wont_be :valid? }
    end
 
    describe "return value of authenticate method" do
