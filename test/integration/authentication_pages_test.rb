@@ -1,8 +1,14 @@
+# coding: utf-8
+
 require "test_helper"
 
-# To be handled correctly this spec must end with "Integration Test"
 describe "AuthenticationPages Integration Test" do
-  # it "must be a real test" do
-  #   flunk "Need real tests"
-  # end
+   subject { page }
+
+   describe "signin page" do
+      before { visit signin_path }
+
+      it { must_have_content('Sign in') }
+      it { must_have_title('Sign in') }
+   end
 end
