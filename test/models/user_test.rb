@@ -15,6 +15,7 @@ describe User do
    it { @user.must_respond_to(:password_digest) }
    it { @user.must_respond_to(:password) }
    it { @user.must_respond_to(:password_confirmation) }
+   it { @user.must_respond_to(:remember_token) }
    it { @user.must_respond_to(:authenticate) }
 
    it { @user.valid?.must_equal true }
@@ -87,5 +88,9 @@ describe User do
       end
    end
 
+   describe "remember token" do
+      before { @user.save }
+      it { @user.remember_token.wont_be :blank? }
+   end
 end
 
