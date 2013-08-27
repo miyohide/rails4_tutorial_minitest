@@ -38,6 +38,7 @@ describe "AuthenticationPages Integration Test" do
 
          it { must_have_title(user.name) }
          it { must_have_link('Profile',    href: user_path(user)) }
+         it { must_have_link('Settings',   href: edit_user_path(user)) }
          it { must_have_link('Sign out',   href: signout_path) }
          it { wont_have_link('Sign in',    href: signin_path) }
 
