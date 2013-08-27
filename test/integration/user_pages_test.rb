@@ -41,7 +41,15 @@ describe "UserPages Integration Test" do
 
        it "should create a user" do
           lambda { click_button submit}.must_change "User.count", 1
+       end
 
+       describe "after saving the user" do
+          before { click_button submit }
+          let(:user) { User.find_by(email: 'user@example.com') }
+
+          it { must_have_link('Sign out') }
+          it { must_have_title(user.name) }
+          it { must_have_selector('div.alert-success', text: 'Welcome') }
        end
     end
   end
