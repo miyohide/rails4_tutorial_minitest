@@ -40,6 +40,11 @@ describe "AuthenticationPages Integration Test" do
          it { must_have_link('Profile',    href: user_path(user)) }
          it { must_have_link('Sign out',   href: signout_path) }
          it { wont_have_link('Sign in',    href: signin_path) }
+
+         describe "followed by signout" do
+            before { click_link "Sign out" }
+            it { must_have_link('Sign in') }
+         end
       end
    end
 end
