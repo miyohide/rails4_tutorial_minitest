@@ -65,6 +65,22 @@ describe "AuthenticationPages Integration Test" do
             end
          end
       end
+
+      describe "as wrong user" do
+         let(:user) { FactoryGirl.create(:user) }
+         let(:wrong_user) { FactoryGirl.create(:user, email: "wrong@example.com") }
+         before { sign_in user, no_capybara: true }
+
+         describe "visiting Users#edit page" do
+            before { visit edit_user_path(wrong_user) }
+            it { wont_have_title(full_title('Edit user')) }
+         end
+
+         describe "submitting a PATCH request to the Users#update action" do
+            before { patch user_path(wrong_user) }
+            specify { response.must_redirected_to(root_url) }
+         end
+      end
    end
 end
 
