@@ -56,7 +56,7 @@ describe "UserPages Integration Test" do
 
   describe "edit" do
      let(:user) { FactoryGirl.create(:user) }
-     before { visit edit_user_path(user) }
+     before { sign_in user; visit edit_user_path(user) }
 
      describe "page" do
         it { must_have_content("Update your profile") }
