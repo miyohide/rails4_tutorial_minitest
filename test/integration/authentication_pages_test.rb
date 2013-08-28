@@ -63,6 +63,11 @@ describe "AuthenticationPages Integration Test" do
                before { patch user_path(user) }
                specify { response.must_redirected_to(signin_path) }
             end
+
+            describe "visiting the user index" do
+               before { visit users_path }
+               it { must_have_title('Sign in') }
+            end
          end
 
          describe "when attempting to visit a protected page" do
