@@ -17,8 +17,10 @@ describe User do
    it { @user.must_respond_to(:password_confirmation) }
    it { @user.must_respond_to(:remember_token) }
    it { @user.must_respond_to(:authenticate) }
+   it { @user.must_respond_to(:admin) }
 
    it { @user.valid?.must_equal true }
+   it { @user.wont_be :admin? }
 
    describe "when name is not present" do
       before { @user.name = "" }
@@ -91,6 +93,15 @@ describe User do
    describe "remember token" do
       before { @user.save }
       it { @user.remember_token.wont_be :blank? }
+   end
+
+   describe "with admin attribute set to 'true'" do
+      before do
+         @user.save!
+         @user.toggle!(:admin)
+      end
+
+      it { @user.must_be :admin? }
    end
 end
 
