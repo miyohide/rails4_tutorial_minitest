@@ -25,6 +25,25 @@ describe "UserPages Integration Test" do
      #       end
      #    end
      # end
+
+     describe "delete links" do
+        it { wont_have_link('delete') }
+
+        describe "as an admin user" do
+           let(:admin) { FactoryGirl.create(:admin) }
+           before do
+              sign_in admin
+              visit users_path
+           end
+
+           it { must_have_link('delete', href: user_path(User.first)) }
+           it "should be able to delete another user" do
+              lambda { click_link('delete', match: :first) }.must_change "User.count", -1
+           end
+           it { wont_have_link('delete', href: user_path(admin)) }
+        end
+     end
+  
   end
 
   describe "profile page" do
