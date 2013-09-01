@@ -1,11 +1,15 @@
 require "test_helper"
 
 describe Micropost do
-  before do
-    @micropost = Micropost.new
-  end
+   let(:user) { FactoryGirl.create(:user) }
 
-  it "must be valid" do
-    @micropost.valid?.must_equal true
-  end
+   before do
+      @micropost = Micropost.new(content: "Lorem ipsum", user_id: user.id)
+   end
+
+   # subject { @micropost }
+
+   it { @micropost.must_respond_to(:content) }
+   it { @micropost.must_respond_to(:user_id) }
+
 end
