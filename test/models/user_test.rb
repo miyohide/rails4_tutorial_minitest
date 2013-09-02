@@ -18,6 +18,7 @@ describe User do
    it { @user.must_respond_to(:remember_token) }
    it { @user.must_respond_to(:authenticate) }
    it { @user.must_respond_to(:admin) }
+   it { @user.must_respond_to(:microposts) }
 
    it { @user.valid?.must_equal true }
    it { @user.wont_be :admin? }
