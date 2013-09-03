@@ -21,4 +21,13 @@ describe Micropost do
       it { @micropost.wont_be :valid? }
    end
 
+   describe "with blank content" do
+      before { @micropost.content = "" }
+      it { @micropost.wont_be :valid? }
+   end
+
+   describe "with content that is too long" do
+      before { @micropost.content = "a" * 141 }
+      it { @micropost.wont_be :valid? }
+   end
 end
