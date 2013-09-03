@@ -122,6 +122,15 @@ describe User do
       it "should have the right microposts in the right order" do
          @user.microposts.to_a.must_equal [@newer_micropost, @older_micropost]
       end
+
+      it "should destroy associated microposts" do
+         microposts = @user.microposts.to_a
+         @user.destroy
+         microposts.wont_be :empty?
+         microposts.each do |micropost|
+            Micropost.where(id: micropost.id).must_be :empty?
+         end
+      end
    end
 end
 
