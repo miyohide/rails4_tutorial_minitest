@@ -104,5 +104,24 @@ describe User do
 
       it { @user.must_be :admin? }
    end
+
+   describe "micropost associations" do
+      before do
+         @user.save
+         @older_micropost = FactoryGirl.create(:micropost, user: @user, created_at: 1.day.ago)
+         @newer_micropost = FactoryGirl.create(:micropost, user: @user, created_at: 1.hour.ago)
+      end
+      # before { @user.save }
+      # let(:older_micropost) do
+      #    FactoryGirl.create(:micropost, user: @user, created_at: 1.day.ago)
+      # end
+      # let(:newer_micropost) do
+      #    FactoryGirl.create(:micropost, user: @user, created_at: 1.hour.ago)
+      # end
+
+      it "should have the right microposts in the right order" do
+         @user.microposts.to_a.must_equal [@newer_micropost, @older_micropost]
+      end
+   end
 end
 
