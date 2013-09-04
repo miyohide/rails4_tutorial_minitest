@@ -47,11 +47,22 @@ describe "UserPages Integration Test" do
   end
 
   describe "profile page" do
-     let(:user) { FactoryGirl.create(:user) }
-     before { visit user_path(user) }
 
-     it { must_have_content(user.name) }
-     it { must_have_title(user.name) }
+     before do
+        @user = FactoryGirl.create(:user)
+        @m1 = FactoryGirl.create(:micropost, user: @user, content: "Foo")
+        @m2 = FactoryGirl.create(:micropost, user: @user, content: "Bar")
+        visit user_path(@user)
+     end
+
+     it { must_have_content(@user.name) }
+     it { must_have_title(@user.name) }
+
+     describe "microposts" do
+        it { must_have_content(@m1.content) }
+        it { must_have_content(@m2.content) }
+        it { must_have_content(@user.microposts.count) }
+     end
  
   end
 
