@@ -19,6 +19,7 @@ describe User do
    it { @user.must_respond_to(:authenticate) }
    it { @user.must_respond_to(:admin) }
    it { @user.must_respond_to(:microposts) }
+   it { @user.must_respond_to(:feed) }
 
    it { @user.valid?.must_equal true }
    it { @user.wont_be :admin? }
@@ -130,6 +131,16 @@ describe User do
          microposts.each do |micropost|
             Micropost.where(id: micropost.id).must_be :empty?
          end
+      end
+
+      describe "status" do
+         let(:unfollowed_post) do
+            FactoryGirl.create(:micropost, user: FactoryGirl.create(:user))
+         end
+
+         it { @user.feed.must_include(@newer_micropost) }
+         it { @user.feed.must_include(@older_micropost) }
+         it { @user.feed.wont_include(unfollowed_post) }
       end
    end
 end
