@@ -1,14 +1,17 @@
+# coding: utf-8
+
 class StaticPagesController < ApplicationController
-  def home
-  end
+   def home
+      @micropost = current_user.microposts.build if signed_in?
+   end
 
-  def help
-  end
+   def help
+   end
 
-  def about
+   def about
 
-  end
+   end
 
-  def contact
-  end
+   def contact
+   end
 end
