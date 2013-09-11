@@ -18,4 +18,14 @@ describe Relationship do
       it { relationship.follower.must_equal follower }
       it { relationship.followed.must_equal followed }
    end
+
+   describe "when followed id is not present" do
+      before { relationship.followed_id = nil }
+      it { relationship.wont_be :valid? }
+   end
+
+   describe "when follower id is not present" do
+      before { relationship.follower_id = nil }
+      it { relationship.wont_be :valid? }
+   end
 end
