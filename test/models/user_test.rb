@@ -24,6 +24,7 @@ describe User do
    it { @user.must_respond_to(:followed_users) }
    it { @user.must_respond_to(:following?) }
    it { @user.must_respond_to(:follow!) }
+   it { @user.must_respond_to(:unfollow!) }
 
    it { @user.valid?.must_equal true }
    it { @user.wont_be :admin? }
@@ -159,6 +160,13 @@ describe User do
       it { @user.following?(other_user).wont_be_nil }
       it { @user.followed_users.must_include(other_user) }
 
+      describe "and unfollowing" do
+         before { @user.unfollow!(other_user) }
+
+         it { @user.following?(other_user).must_be_nil }
+         it { @user.followed_users.wont_include(other_user) }
+      end
    end
+
 end
 
