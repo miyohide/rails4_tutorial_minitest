@@ -21,6 +21,7 @@ describe User do
    it { @user.must_respond_to(:microposts) }
    it { @user.must_respond_to(:feed) }
    it { @user.must_respond_to(:relationships) }
+   it { @user.must_respond_to(:followed_users) }
 
    it { @user.valid?.must_equal true }
    it { @user.wont_be :admin? }
