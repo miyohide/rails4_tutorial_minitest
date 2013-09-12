@@ -22,6 +22,8 @@ describe User do
    it { @user.must_respond_to(:feed) }
    it { @user.must_respond_to(:relationships) }
    it { @user.must_respond_to(:followed_users) }
+   it { @user.must_respond_to(:following?) }
+   it { @user.must_respond_to(:follow!) }
 
    it { @user.valid?.must_equal true }
    it { @user.wont_be :admin? }
@@ -144,6 +146,19 @@ describe User do
          it { @user.feed.must_include(@older_micropost) }
          it { @user.feed.wont_include(unfollowed_post) }
       end
+   end
+
+   describe "following" do
+      let(:other_user) { FactoryGirl.create(:user) }
+      before do
+         @user.save
+         @user.follow!(other_user)
+      end
+
+      # TODO: RailsTutorialの実装と違うが、これでよいか要確認。
+      it { @user.following?(other_user).wont_be_nil }
+      it { @user.followed_users.must_include(other_user) }
+
    end
 end
 
