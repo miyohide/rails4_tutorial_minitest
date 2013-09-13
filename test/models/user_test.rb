@@ -22,9 +22,11 @@ describe User do
    it { @user.must_respond_to(:feed) }
    it { @user.must_respond_to(:relationships) }
    it { @user.must_respond_to(:followed_users) }
+   it { @user.must_respond_to(:reverse_relationships) }
    it { @user.must_respond_to(:following?) }
    it { @user.must_respond_to(:follow!) }
    it { @user.must_respond_to(:unfollow!) }
+   it { @user.must_respond_to(:followers) }
 
    it { @user.valid?.must_equal true }
    it { @user.wont_be :admin? }
@@ -159,6 +161,10 @@ describe User do
       # TODO: RailsTutorialの実装と違うが、これでよいか要確認。
       it { @user.following?(other_user).wont_be_nil }
       it { @user.followed_users.must_include(other_user) }
+
+      describe "followed user" do
+         it { other_user.followers.must_include(@user) }
+      end
 
       describe "and unfollowing" do
          before { @user.unfollow!(other_user) }
