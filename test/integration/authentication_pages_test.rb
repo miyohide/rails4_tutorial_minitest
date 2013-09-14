@@ -69,6 +69,16 @@ describe "AuthenticationPages Integration Test" do
                before { visit users_path }
                it { must_have_title('Sign in') }
             end
+
+            describe "visiting the following page" do
+               before { visit following_user_path(user) }
+               it { must_have_title('Sign in') }
+            end
+
+            describe "visiting the followers page" do
+               before { visit followers_user_path(user) }
+               it { must_have_title('Sign in') }
+            end
          end
 
          describe "when attempting to visit a protected page" do
