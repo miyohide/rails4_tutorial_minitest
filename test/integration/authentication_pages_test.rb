@@ -107,6 +107,18 @@ describe "AuthenticationPages Integration Test" do
                specify { response.must_redirected_to(signin_path) }
             end
          end
+
+         describe "in the Relationships controller" do
+            describe "submitting to the create action" do
+               before { post relationships_path }
+               specify { response.must_redirected_to(signin_path) }
+            end
+         end
+
+         describe "submitting to the destroy action" do
+            before { delete relationship_path(1) }
+            specify { response.must_redirected_to(signin_path) }
+         end
       end
 
       describe "as wrong user" do
